@@ -15,8 +15,8 @@
 - During the initial rendering, the callback function is invoked, the calculated result memoized and a component is returned(rendering)
 
 - Here is the catch;
-***If the dependencies do not change, the callback function is not invoked, instead, the memoized values is returned. ***
-***If the dependencies change, the callback function is invoked, the calculated result memoized and the component is rerendered. ***
+ -- If the dependencies do not change, the callback function is not invoked, instead, the memoized values is returned.
+ -- If the dependencies change, the callback function is invoked, the calculated result memoized and the component is rerendered.
 
 
 - Therefore, the example included on this repo works as follows:
