@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+## What is React.useMemo?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- This is a built-in hook in React.
+- It allows users to memoize expensive functions.
 
-## Available Scripts
+- From Wikipedia: Memoization is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again
 
-In the project directory, you can run:
+- This hook accepts 2 arguments: 
+   ** A callback function ** - That computes a result
+   ** Dependency array ** - Array of variables whose change causes rerendering
 
-### `npm start`
+- const memoizedResult = useMemo(callbackfunction, dependencyarray)
+- const memoizedResult = useMemo(() => expensiveFunction(parameters), [dependencies])
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- During the initial rendering, the callback function is invoked, the calculated result memoized and a component is returned(rendering)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Here is the catch;
+*** -- If the dependencies do not change, the callback function is not invoked, instead, the memoized values is returned. ***
+*** -- If the dependencies change, the callback function is invoked, the calculated result memoized and the component is rerendered. ***
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Therefore, the example included on this repo works as follows:
+Everytime you change the input of the factorialOf function, the factorial of the parameter provided is calculated and  factorialOf(n) is logged to console. However, after clicking the re-render button, factorialOf(n) isn't logged becaused useMemo(() => factorialOf(number), [number]); returns the factorial calculated value.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+###### Note: When memoization is used inpappropriately, it can harm performance.

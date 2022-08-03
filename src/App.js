@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useMemo } from "react";
 
 function App() {
+  const [number, setNumber] = useState(1);
+  const [inc, setInc] = useState(1);
+  // const factorial = factorialOf(number);
+  const factorial = useMemo(() => factorialOf(number), [number]);
+  const onChange = (event) => {
+    setNumber(Number(event.target.value));
+  };
+  const onClick = () => setInc((i) => i + 1);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Factorial of
+      <input type="number" value={number} onChange={onChange} />
+      is {factorial}
+      <button onClick={onClick}>Re-render</button>
     </div>
   );
 }
 
 export default App;
+const factorialOf = (n) => {
+  console.log("Factorial is called!");
+  return n <= 0 ? 1 : n * factorialOf(n - 1);
+};
