@@ -21,5 +21,6 @@
 
 - Therefore, the example included on this repo works as follows:
 Everytime you change the input of the factorialOf function, the factorial of the parameter provided is calculated and  factorialOf(n) is logged to console. However, after clicking the re-render button, factorialOf(n) isn't logged becaused useMemo(() => factorialOf(number), [number]); returns the factorial calculated value.
+- Without useMemo(), we would have to use the code on line 7.
 
 ###### Note: When memoization is used inpappropriately, it can harm performance.
