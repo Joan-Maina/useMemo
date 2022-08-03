@@ -6,8 +6,8 @@
 - From Wikipedia: Memoization is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again
 
 - This hook accepts 2 arguments: 
-   ** A callback function ** - That computes a result
-   ** Dependency array ** - Array of variables whose change causes rerendering
+   A callback function - That computes a result
+   Dependency array - Array of variables whose change causes rerendering
 
 - const memoizedResult = useMemo(callbackfunction, dependencyarray)
 - const memoizedResult = useMemo(() => expensiveFunction(parameters), [dependencies])
